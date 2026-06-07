@@ -1,0 +1,38 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model carts {
+  id         Int          @id @default(autoincrement())
+  user_id    Int
+  cart_items cart_items[]
+}
+
+model cart_items {
+  id         Int   @id @default(autoincrement())
+  cart_id    Int
+  product_id Int
+  quantity   Int
+  cart       carts @relation(fields: [cart_id], references: [id])
+}
+
+model orders {
+  id            Int            @id @default(autoincrement())
+  user_id       Int
+  created_at    DateTime       @default(now())
+  order_details order_details[]
+}
+
+model order_details {
+  id         Int    @id @default(autoincrement())
+  order_id   Int
+  product_id Int
+  price      Float
+  quantity   Int
+  order      orders @relation(fields: [order_id], references: [id])
+}
