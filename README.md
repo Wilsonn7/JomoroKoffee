@@ -608,4 +608,5 @@ AUTH_SERVICE_URL="http://localhost:3001"
 
 ---
 
-*Dibuat dengan ❤️ untuk Jomoro Koffee POS System*
+
+
